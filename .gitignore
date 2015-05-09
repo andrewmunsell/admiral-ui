@@ -1,0 +1,9 @@
+# Build files
+build/*
+!build/.gitkeep
+
+# NodeJS dependencies
+node_modules/
+
+# IDE Files
+.idea/
