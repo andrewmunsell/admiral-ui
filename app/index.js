@@ -43,7 +43,7 @@ angular.module('AdmiralApp', [ require('angular-route'), require('angular-materi
     }])
     .factory('ConfigService', function() {
         return {
-            api: 'http://localhost:3000'
+            api: ''
         };
     })
     .controller('AppController', require('./controllers/AppController'))
