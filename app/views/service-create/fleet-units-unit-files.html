@@ -1,0 +1,36 @@
+<md-content
+        ng-controller="FleetUnitsUnitFilesController"
+
+        layout="column"
+        layout-padding>
+    <div ng-repeat="unit in $parent.$parent.service.unitFiles track by $index"
+
+         layout="column"
+         layout-gt-md="row">
+
+        <md-input-container flex>
+            <label>Unit File ({{ $index + 1 }} / {{ $parent.$parent.service.unitFiles.length }})</label>
+            <textarea
+                    ng-model="$parent.$parent.service.unitFiles[$index]"
+
+                    class="monospace"></textarea>
+        </md-input-container>
+
+        <md-button
+                ng-click="$parent.$parent.service.unitFiles.splice($index, 1)"
+
+                class="md-fab md-mini md-warn"
+                aria-label="Delete Unit File">
+            <md-icon
+                    md-svg-src="node_modules/material-design-icons/action/svg/production/ic_highlight_remove_48px.svg">
+            </md-icon>
+        </md-button>
+    </div>
+
+    <md-button
+            class="md-raised md-primary"
+
+            ng-click="$parent.$parent.service.unitFiles.push('')">
+        Add New Unit File
+    </md-button>
+</md-content>

@@ -1,0 +1,94 @@
+<md-content layout-padding>
+    <md-toolbar class="filter-toolbar">
+        <div class="md-toolbar-tools" layout="row" layout-align="end center">
+            <md-button
+                    ng-click="startSelected()"
+                    ng-disabled="!selectedServices.length || loading"
+
+                    class="md-accent">Start</md-button>
+
+            <md-button
+                    ng-click="stopSelected()"
+                    ng-disabled="!selectedServices.length || loading">
+                Stop
+            </md-button>
+
+            <md-button
+                    ng-click="terminateSelected()"
+                    ng-disabled="!selectedServices.length || loading"
+
+                    class="md-warn">
+                Terminate
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-list>
+        <div ng-repeat="application in applications">
+            <md-subheader
+                    ng-show="!applicationId">{{ application.name }}</md-subheader>
+
+            <md-list-item
+                    ng-repeat="service in application.services"
+
+                    class="md-2-line">
+                <md-checkbox
+                        ng-click="toggleSelection(service.id)"
+                        ng-checked="isServiceSelected(service.id)"
+                        ng-disabled="loading">
+                </md-checkbox>
+
+                <div class="md-list-item-text">
+                    <h3>{{ service.name }}</h3>
+                    <p>
+                        {{ service.state }},
+
+                        <ng-pluralize
+                            count="service.units"
+                            when="{'0': 'No Units',
+                                'one': '1 Unit',
+                                'other': '{} Units'
+                                }">
+                        </ng-pluralize>
+                    </p>
+                </div>
+
+                <md-icon
+                        ng-click="openService(service.application, service.id)"
+                        md-svg-icon="node_modules/material-design-icons/editor/svg/production/ic_mode_edit_48px.svg"
+
+                        aria-label="View or Edit Service"
+                        class="md-secondary">
+                </md-icon>
+            </md-list-item>
+
+            <md-list-item
+                    ng-click="createService(application.id)"
+                    ng-class="{ 'md-2-line': !application.services.length }">
+                <md-icon
+                        md-svg-icon="node_modules/material-design-icons/content/svg/production/ic_add_48px.svg">
+                </md-icon>
+
+                <div ng-if="!application.services.length && !loading" class="md-list-item-text">
+                    <h3>This application has no services</h3>
+                    <p>Click here to create a new service.</p>
+                </div>
+
+                <p ng-if="application.services.length || loading">
+                    Create a new service
+                </p>
+            </md-list-item>
+        </div>
+
+        <div
+                ng-show="!applications.length">
+            <md-list-item
+                    class="md-2-line">
+                <div class="md-list-item-text">
+                    <h3>There are no applications.</h3>
+                    <p>You must create an application before you can create a service.</p>
+                </div>
+            </md-list-item>
+        </div>
+    </md-list>
+</md-content>

@@ -1,0 +1,67 @@
+/** Global Helpers **/
+
+.md-clickable {
+    cursor: pointer;
+}
+
+.monospace {
+    font-family: "Source Code Pro", "Courier New", monospace;
+}
+
+/** Side Navigation **/
+
+md-sidenav md-list-item.md-no-proxy {
+    padding-left: 0;
+    padding-right: 0;
+
+    min-height: 0;
+}
+
+md-sidenav md-list-item md-button,
+md-sidenav md-list-item .md-button{
+    padding: 4px 16px;
+    margin: 0;
+}
+
+/** Filter Navigation **/
+
+md-toolbar.filter-toolbar {
+    background: #eeeeee;
+}
+
+md-toolbar.filter-toolbar .md-button {
+    color: #333;
+}
+
+/** Dialogs **/
+
+md-dialog .md-subheader {
+    margin: 0;
+}
+
+/** Dashboard **/
+
+md-content.dashboard md-grid-tile {
+    background: #e1e1e1;
+}
+
+md-content.dashboard md-icon{
+    width: 48px;
+    height: 48px;
+}
+
+md-content.dashboard md-grid-tile.blue-200 {
+    background: #90CAF9;
+}
+
+md-content.dashboard md-grid-tile.blue-200 md-icon {
+    color: #fff;
+}
+
+/** Machines **/
+
+md-dialog.machine-details-dialog table {
+    width: 100%;
+
+    text-align: left;
+}
