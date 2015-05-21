@@ -1,0 +1,34 @@
+<md-dialog class="machine-details-dialog">
+    <md-dialog-content class="sticky-container">
+        <md-subheader>Machine Information</md-subheader>
+
+        <table>
+            <tbody>
+            <tr>
+                <th>Machine ID</th>
+                <td>{{ machine.machine }}</td>
+            </tr>
+
+                <tr>
+                    <th>IP Address</th>
+                    <td>{{ machine.ip }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <md-subheader>Metadata</md-subheader>
+
+        <table>
+            <tbody>
+                <tr ng-repeat="(key, value) in machine.metadata">
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row">
+        <md-button ng-click="close()" class="md-primary">Close</md-button>
+    </div>
+</md-dialog>

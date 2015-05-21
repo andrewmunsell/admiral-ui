@@ -1,0 +1,46 @@
+<md-content layout-padding layout="column">
+    <md-tabs
+            md-dynamic-height
+            md-border-bottom>
+        <md-tab
+                ng-disabled="selectedTemplate || loading"
+
+                label="Template">
+            <md-content layout-padding flex>
+                <p>Choose a template for the service. You will not be able to change this template later.</p>
+
+                <div flex layout="column">
+                    <md-select
+                            ng-model="template"
+
+                            placeholder="Pick a Service Template">
+                        <md-option
+                                ng-repeat="(key, template) in templates"
+
+                                value="{{ key }}">
+                            {{ template.name }}
+                        </md-option>
+                    </md-select>
+
+                    <md-button
+                            ng-click="chooseTemplate()"
+                            ng-disabled="!template"
+
+                            class="md-raised md-primary">
+                        Choose Template
+                    </md-button>
+                </div>
+            </md-content>
+        </md-tab>
+
+        <md-tab
+                ng-repeat="step in templates[template].steps"
+                ng-disabled="!selectedTemplate || (loading && step.template != 'finish')"
+
+                label="{{ step.label }}">
+            <div
+                    ng-include="'app/views/service-create/' + step.template + '.html'">
+            </div>
+        </md-tab>
+    </md-tabs>
+</md-content>

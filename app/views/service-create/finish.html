@@ -1,0 +1,25 @@
+<md-content
+        ng-controller="FinishController"
+
+        flex
+        layout-padding>
+    <h3 class="md-display-6">Everything looks good!</h3>
+
+    <div layout="row">
+        <md-button
+                ng-click="create(true)"
+                ng-disabled="$parent.$parent.loading"
+
+                class="md-raised">
+            Create Service
+        </md-button>
+
+        <md-button
+                ng-click="createAndLaunch()"
+                ng-disabled="$parent.$parent.loading"
+
+                class="md-raised md-primary">
+            Create &amp; Start Service
+        </md-button>
+    </div>
+</md-content>

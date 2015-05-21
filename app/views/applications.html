@@ -1,0 +1,63 @@
+<md-content layout-padding>
+    <md-toolbar class="filter-toolbar">
+        <div class="md-toolbar-tools" layout="row" layout-align="end center">
+            <md-button
+                    ng-click="destroySelected()"
+                    ng-disabled="!selectedApplications.length"
+
+                    class="md-warn">Destroy</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-list>
+        <md-list-item
+                ng-repeat="application in applications track by application.id"
+
+                class="md-2-line">
+            <md-checkbox
+                    ng-click="toggleSelection(application.id)"
+                    ng-checked="isApplicationSelected(application.id)"
+                    ng-disabled="loading">
+            </md-checkbox>
+
+            <div class="md-list-item-text">
+                <h3>{{ application.name }}</h3>
+                <p>
+                    <ng-pluralize
+                        count="application.services.length"
+                        when="{'0': 'No Services',
+                                'one': '1 Service',
+                                'other': '{} Services'
+                                }"></ng-pluralize>
+                </p>
+            </div>
+
+            <md-icon
+                    ng-click="openApplication(application.id)"
+                    md-svg-icon="node_modules/material-design-icons/editor/svg/production/ic_mode_edit_48px.svg"
+
+                    aria-label="View or Edit {{ application.name }}"
+                    class="md-secondary">
+            </md-icon>
+        </md-list-item>
+
+        <md-list-item
+                ng-click="createApplication()"
+                ng-class="{ 'md-2-line': !applications.length }"
+
+                aria-label="Create New Application">
+            <md-icon
+                    md-svg-icon="node_modules/material-design-icons/content/svg/production/ic_add_48px.svg">
+            </md-icon>
+
+            <div ng-if="!applications.length && !loading" class="md-list-item-text">
+                <h3>You do not have any applications.</h3>
+                <p>Click here to create one now.</p>
+            </div>
+
+            <p ng-if="applications.length || loading">
+                Create a new application.
+            </p>
+        </md-list-item>
+    </md-list>
+</md-content>

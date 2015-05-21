@@ -1,0 +1,30 @@
+<md-content layout-padding>
+    <div ng-show="loading" layout="row" layout-align="space-around">
+        <md-progress-circular
+                class="md-primary"
+                md-mode="indeterminate">
+        </md-progress-circular>
+    </div>
+
+    <md-list ng-hide="loading">
+        <md-list-item
+                ng-repeat="machine in machines track by machine.machine"
+                ng-click="viewMachine(machine.machine)"
+
+                aria-label="View Machine Details"
+                class="md-2-line">
+            <div class="md-list-item-text">
+                <h3>{{ machine.machine }}</h3>
+                <p>{{ machine.ip }}</p>
+            </div>
+
+            <md-icon
+                    ng-click="viewMachine(machine.machine)"
+                    md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_label_48px.svg"
+
+                    aria-label="View Machine Labels"
+                    class="md-secondary">
+            </md-icon>
+        </md-list-item>
+    </md-list>
+</md-content>

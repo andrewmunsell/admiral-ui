@@ -1,0 +1,88 @@
+<md-content layout-padding layout="column">
+    <md-toolbar class="filter-toolbar">
+        <div class="md-toolbar-tools" layout="row" layout-align="center center" layout-align-gt-md="end center">
+            <md-button
+                    ng-click="start()"
+                    ng-disabled="loading"
+
+                    class="md-primary">Start</md-button>
+            <md-button
+                    ng-click="stop()"
+                    ng-disabled="loading"
+
+                    class="md-accent">Stop</md-button>
+            <md-button
+                    ng-click="destroy()"
+                    ng-disabled="loading"
+
+                    class="md-warn">Destroy</md-button>
+        </div>
+    </md-toolbar>
+
+    <h2 class="md-display-1">{{ application.name }}</h2>
+
+    <div layout="column" layout-gt-md="row">
+        <div flex-gt-md="30">
+            <md-list>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>{{ application.status }}</h3>
+                        <p>Status</p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>{{ application.createdAtRelative }}</h3>
+                        <p>Created</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        <div
+                flex-gt-md="70"
+                layout-padding>
+            <md-list>
+                <md-subheader>Services</md-subheader>
+
+                <md-list-item
+                        ng-repeat="service in application.services"
+                        ng-click="openService(service.id)"
+
+                        class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>{{ service.name }}</h3>
+                        <p>
+                            {{ service.state }},
+
+                            <ng-pluralize
+                                    count="service.units"
+                                    when="{'0': 'No Units',
+                                'one': '1 Unit',
+                                'other': '{} Units'
+                                }"></ng-pluralize>
+                        </p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item
+                        ng-click="createService()"
+                        ng-class="{ 'md-2-line': !application.services.length }">
+                    <md-icon
+                            md-svg-icon="node_modules/material-design-icons/content/svg/production/ic_add_48px.svg">
+                    </md-icon>
+
+                    <div ng-if="!application.services.length && !loading" class="md-list-item-text">
+                        <h3>This application has no services</h3>
+                        <p>Click here to create a new service.</p>
+                    </div>
+
+                    <p ng-if="application.services.length || loading">
+                        Create a new service
+                    </p>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</md-content>

@@ -1,0 +1,81 @@
+<md-content layout-padding class="dashboard">
+    <md-grid-list
+            md-cols-sm="1" md-cols-md="2" md-cols-gt-md="4"
+            md-row-height-gt-md="1:1" md-row-height="16:9"
+            md-gutter="12px" md-gutter-gt-sm="8px" >
+        <md-grid-tile
+                md-colspan="2"
+                md-rowspan="1"
+                md-colspan-sm="1"
+                
+                class="blue-200 md-whiteframe-z1">
+            <md-icon
+                    md-svg-icon="node_modules/material-design-icons/device/svg/production/ic_now_widgets_48px.svg"
+
+                    class="s48">
+
+            </md-icon>
+
+            <md-grid-tile-footer>
+                <h3>
+                    <ng-pluralize
+                            count="applications"
+                            when="{'0': '0 Applications',
+                                    'one': '1 Application',
+                                    'other': '{} Applications'
+                                    }"></ng-pluralize>
+                </h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+        <md-grid-tile
+                md-colspan="1"
+                md-rowspan="1"
+                md-colspan-sm="1"
+
+                class="blue-200 md-whiteframe-z1">
+            <md-icon
+                    md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_language_48px.svg"
+
+                    class="s48">
+
+            </md-icon>
+
+            <md-grid-tile-footer>
+                <h3>
+                    <ng-pluralize
+                            count="services"
+                            when="{'0': '0 Running Services',
+                                    'one': '1 Running Service',
+                                    'other': '{} Running Services'
+                                    }"></ng-pluralize>
+                </h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+        <md-grid-tile
+                md-colspan="1"
+                md-rowspan="1"
+                md-colspan-sm="1"
+
+                class="blue-200 md-whiteframe-z1">
+            <md-icon
+                    md-svg-icon="node_modules/material-design-icons/hardware/svg/production/ic_memory_48px.svg"
+
+                    class="s48">
+
+            </md-icon>
+
+            <md-grid-tile-footer>
+                <h3>
+                    <ng-pluralize
+                            count="machines"
+                            when="{'0': 'No Machines in the Cluster',
+                                    'one': '1 Machine in the Cluster',
+                                    'other': '{} Machines in the Cluter'
+                                    }"></ng-pluralize>
+                </h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+</md-content>
