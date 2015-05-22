@@ -30,6 +30,11 @@ angular.module('AdmiralApp', [ require('angular-route'), require('angular-materi
                 controller: require('./controllers/ServiceCreateController'),
                 title: ['Applications', 'Services', 'New Service']
             })
+            .when('/applications/:applicationId/services/:serviceId', {
+                templateUrl: 'app/views/service-details.html',
+                controller: require('./controllers/ServiceDetailsController'),
+                title: ['Applications', 'Services', 'Details']
+            })
             .when('/services', {
                 templateUrl: 'app/views/services.html',
                 controller: require('./controllers/ServicesController'),

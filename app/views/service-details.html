@@ -1,0 +1,64 @@
+<md-content layout-padding layout="column">
+    <md-toolbar class="filter-toolbar">
+        <div class="md-toolbar-tools" layout="row" layout-align="center center" layout-align-gt-md="end center">
+            <md-button
+                    ng-click="start()"
+                    ng-disabled="loading || service.state == 'running' || service.state == 'terminated'"
+
+                    class="md-primary">Start</md-button>
+            <md-button
+                    ng-click="stop()"
+                    ng-disabled="loading || service.state == 'initialized' || service.state == 'stopped' || service.state == 'terminated'"
+
+                    class="md-accent">Stop</md-button>
+            <md-button
+                    ng-click="unload()"
+                    ng-disabled="loading || service.state == 'initialized' || service.state == 'terminated'"
+
+                    class="md-accent">Unload</md-button>
+            <md-button
+                    ng-click="terminate()"
+                    ng-disabled="loading || service.state == 'terminated'"
+
+                    class="md-warn">Terminate</md-button>
+        </div>
+    </md-toolbar>
+
+    <h2 class="md-display-1">{{ service.name }}</h2>
+
+    <div layout="column" layout-gt-md="row">
+        <div flex-gt-md="30">
+            <md-list>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>{{ service.state}}</h3>
+                        <p>Status</p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>{{ service.createdAtRelative }}</h3>
+                        <p>Created</p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <h3>
+                            <a href="#/applications/{{ application.id }}">{{ application.name }}</a>
+                        </h3>
+
+                        <p>Application</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        <div
+                flex-gt-md="70"
+                layout-padding>
+
+        </div>
+    </div>
+</md-content>
