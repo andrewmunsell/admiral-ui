@@ -60,8 +60,8 @@ module.exports = ['$scope', '$http', '$location', '$routeParams', 'ConfigService
             .then(function(result) {
                 return result.data;
             })
-            .then(function(service) {
-                $location.path('applications/' + applicationId + '/services/' + service.id);
+            .then(function(deployment) {
+                $location.path('applications/' + applicationId + '/services/' + deployment.service);
             })
             .finally(function() {
                 $scope.$parent.$parent.loading = false;
