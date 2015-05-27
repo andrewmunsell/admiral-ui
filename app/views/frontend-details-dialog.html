@@ -4,11 +4,11 @@
             md-padding
 
             class="sticky-container">
-        <md-subheader ng-if="frontend.id">
+        <md-subheader ng-show="frontend.id">
             Edit Frontend
         </md-subheader>
 
-        <md-subheader ng-if="!frontend.id">
+        <md-subheader ng-show="!frontend.id">
             Create Frontend
         </md-subheader>
 
