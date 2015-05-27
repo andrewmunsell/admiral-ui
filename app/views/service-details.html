@@ -27,7 +27,7 @@
     <h2 class="md-display-1">{{ service.name }}</h2>
 
     <div layout="column" layout-gt-md="row">
-        <div flex-gt-md="30">
+        <div flex-gt-md="20">
             <md-list>
                 <md-list-item class="md-2-line">
                     <div class="md-list-item-text">
@@ -56,9 +56,41 @@
         </div>
 
         <div
-                flex-gt-md="70"
+                flex
                 layout-padding>
+            <md-tabs>
+                <md-tab label="Units">
+                    <md-list>
+                        <div ng-repeat="unitFile in service.unitFiles">
+                            <md-list-item>
+                                <p class="md-subheader">{{ unitFile.id }}</p>
+                            </md-list-item>
 
+                            <md-list-item
+                                    ng-repeat="unit in unitFile.units"
+
+                                    class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3>{{ unit.unit }}</h3>
+
+                                    <p>{{ unit.active }} on {{ unit.machineId }} ({{ unit.machineIp }})</p>
+                                </div>
+                            </md-list-item>
+
+                            <md-list-item
+                                    ng-if="!unitFile.units.length"
+
+                                    class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3>This unit file has no scheduled or running units.</h3>
+
+                                    <p>You must start the service to schedule the units in the cluster.</p>
+                                </div>
+                            </md-list-item>
+                        </div>
+                    </md-list>
+                </md-tab>
+            </md-tabs>
         </div>
     </div>
 </md-content>
