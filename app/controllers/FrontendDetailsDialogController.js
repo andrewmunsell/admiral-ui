@@ -5,43 +5,7 @@
  */
 
 module.exports = ['$scope', '$http', '$mdDialog', 'ConfigService', function($scope, $http, $mdDialog, ConfigService) {
-    $scope.unitFiles = [];
     $scope.loading = false;
-
-    /**
-     * Load the services that have routing enabled
-     */
-    $scope.loadServices = function() {
-        $http({
-            method: 'GET',
-            url: ConfigService.api + '/v1/services',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-            data: ''
-        })
-            .then(function(results) {
-                var unitFiles = [];
-
-                for(var i = 0; i < results.data.length; i++) {
-                    var u = results.data[i].unitFiles;
-
-                    for(var n = 0; n < u.length; n++) {
-                        //if(u[n].port) {
-                            var unit = u[n];
-                            unit.serviceName = results.data[i].name;
-
-                            unitFiles.push(unit);
-                        //}
-                    }
-                }
-
-                console.log(unitFiles);
-
-                $scope.unitFiles = unitFiles;
-            });
-    };
 
     /**
      * Create or edit a new frontend using the current model
@@ -57,6 +21,30 @@ module.exports = ['$scope', '$http', '$mdDialog', 'ConfigService', function($sco
         }
 
         $http.post(url, $scope.frontend, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(function(result) {
+                $mdDialog.hide();
+            })
+            .catch(function(err) {
+                $scope.errors = err.data;
+            })
+            .finally(function() {
+                $scope.loading = false;
+            });
+    };
+
+    /**
+     * Delete the current frontend
+     */
+    $scope.delete = function() {
+        $scope.loading = true;
+
+        var url = ConfigService.api + '/v1/router/frontends/' + $scope.frontend.id;
+
+        $http.delete(url, $scope.frontend, {
             headers: {
                 'Content-Type': 'application/json'
             }

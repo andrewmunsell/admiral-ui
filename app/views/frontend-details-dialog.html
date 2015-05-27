@@ -24,7 +24,11 @@
                 </md-input-container>
 
                 <md-input-container>
-                    <md-select ng-model="frontend.BackendId" md-on-open="loadServices()" style="min-width: 200px;">
+                    <md-select
+                            ng-model="frontend.BackendId"
+
+                            aria-label="Backend"
+                            style="min-width: 200px;">
                         <md-option ng-value="unitFile.id" ng-repeat="unitFile in unitFiles">
                             {{ unitFile.serviceName }} (Port {{ unitFile.port }})
                         </md-option>
@@ -44,11 +48,27 @@
     </md-dialog-content>
 
     <div class="md-actions" layout="row">
-        <md-button ng-click="cancel()" ng-disabled="loading">Cancel</md-button>
+        <md-button
+                ng-click="delete()"
+                ng-disabled="loading"
+                ng-if="frontend.id"
+
+                aria-label="Delete"
+                class="md-warn">
+            Delete
+        </md-button>
+        <md-button
+                ng-click="cancel()"
+                ng-disabled="loading"
+
+                aria-label="Cancel">
+            Cancel
+        </md-button>
         <md-button
                 ng-click="save()"
                 ng-disabled="loading || !frontend.Type || !frontend.BackendId || !frontend.Route"
 
+                aria-label="Save Frontend"
                 class="md-primary">
             <span ng-if="frontend.id">Save</span>
             <span ng-if="!frontend.id">Create</span>
