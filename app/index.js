@@ -15,6 +15,11 @@ angular.module('AdmiralApp', [ require('angular-route'), require('angular-materi
                 controller: require('./controllers/IndexController'),
                 title: ['Dashboard']
             })
+            .when('/router', {
+                templateUrl: 'app/views/router.html',
+                controller: require('./controllers/RouterController'),
+                title: ['Router']
+            })
             .when('/applications', {
                 templateUrl: 'app/views/applications.html',
                 controller: require('./controllers/ApplicationsController'),

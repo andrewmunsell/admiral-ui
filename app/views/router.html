@@ -1,0 +1,49 @@
+<md-content layout-padding>
+    <div ng-show="loading" layout="row" layout-align="space-around">
+        <md-progress-circular
+                class="md-primary"
+                md-mode="indeterminate">
+        </md-progress-circular>
+    </div>
+
+    <md-list ng-hide="loading">
+        <md-list-item
+                ng-repeat="frontend in frontends track by frontend.id"
+                ng-click="viewFrontend(frontend.id)"
+
+                aria-label="View or Edit Frontend"
+                class="md-2-line">
+            <div class="md-list-item-text">
+                <h3>{{ frontend.id }}</h3>
+                <p>{{ frontend.id }}</p>
+            </div>
+
+            <md-icon
+                    ng-click="viewFrontend(frontend.id)"
+                    md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_label_48px.svg"
+
+                    aria-label="View or Edit Frontend"
+                    class="md-secondary">
+            </md-icon>
+        </md-list-item>
+
+        <md-list-item
+                ng-click="createFrontend()"
+                ng-class="{ 'md-2-line': !frontends.length }"
+
+                aria-label="Create New Frontend">
+            <md-icon
+                    md-svg-icon="node_modules/material-design-icons/content/svg/production/ic_add_48px.svg">
+            </md-icon>
+
+            <div ng-if="!frontends.length && !loading" class="md-list-item-text">
+                <h3>You do not have any frontends.</h3>
+                <p>Click here to create one now.</p>
+            </div>
+
+            <p ng-if="frontends.length || loading">
+                Create a new frontend.
+            </p>
+        </md-list-item>
+    </md-list>
+</md-content>
